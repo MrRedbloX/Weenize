@@ -14,6 +14,8 @@ Runs directly the weez payload.
 ### PUT api/task
 Creates a task.
 - Body: the same as weez body.
+- Path params:
+    - time_interval: time in minutes to wait between each task execution.
 - Response 201: Task.
 ### GET api/task
 Gets a task.
@@ -93,7 +95,9 @@ Gets all the runs of very tasks of a client.
     "active": true,
     "task": {
         <weez template>
-    }
+    },
+    "time_interval": 0,
+    "last_run": 0.0
 }
 ```
 ### TsData
