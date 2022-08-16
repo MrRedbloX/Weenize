@@ -1,0 +1,29 @@
+{
+    "query": "machine learning",
+    "payload": [
+        {
+            "transformer": "GoogleSearch",
+            "input": "__query__",
+            "args": {
+                "limit": 5
+            },
+            "output": "google_search"
+        },
+        {
+            "transformer": "ImageFromHtml",
+            "input": "google_search",
+            "output": "images"
+        },
+        {
+            "transformer": "GoogleVision",
+            "input": "images",
+            "connectors": ["dict_values", "flatten"],
+            "args": {
+                "creds": "__args__.default_service_account",
+                "detection_type": "TEXT_DETECTION",
+                "limit": 3
+            },
+            "output": "__response__"
+        }
+    ]
+}

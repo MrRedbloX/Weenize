@@ -1,0 +1,38 @@
+{
+    "query": "donald trump",
+    "payload": [
+        {
+            "input": "__query__",
+            "transformer": "GoogleSearch",
+            "args": {
+                "limit": 5
+            },
+            "output": "google_search"
+        },
+        {
+            "input": "google_search",
+            "transformer": "TextFromHtml",
+            "output": "text_search"
+        },
+        {
+            "input": "text_search",
+            "connectors": [
+                "dict_values",
+                {
+                    "name": "concat_list",
+                    "args": {
+                        "sep": " "
+                    }
+                }
+            ],
+            "transformer": "GoogleCNL",
+            "args": {
+                "creds": "__args__.default_service_account",
+                "text_type": "PLAIN_TEXT",
+                "encoding_type": "UTF8",
+                "language": "en"
+            },
+            "output": "__response__"
+        }
+    ]
+}

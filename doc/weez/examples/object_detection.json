@@ -1,0 +1,29 @@
+{
+    "query": "machine learning",
+    "payload": [
+        {
+            "input": "__query__",
+            "transformer": "TwitterSearch",
+            "args": {
+                "creds": "__args__.twitter_api_creds"
+            },
+            "output": "twitter_search"
+        },
+        {
+            "input": "twitter_search",
+            "connector": {
+                "name": "get_dict_value",
+                "args": {
+                    "key": "images"
+                }
+            },
+            "transformer": "GoogleVision",
+            "args": {
+                "creds": "__args__.default_service_account",
+                "detection_type": "OBJECT_LOCALIZATION",
+                "limit": 3
+            },
+            "output": "__response__"
+        }
+    ]
+}

@@ -1,0 +1,47 @@
+{
+    "query": "downhill",
+    "payload": [
+        {
+            "input": "__query__",
+            "transformer": "TwitterSearch",
+            "args": {
+                "creds": "__args__.twitter_api_creds"
+            },
+            "connector": {
+                "name": "get_dict_value",
+                "args": {
+                    "key": "images"
+                },
+                "type": "post"
+            },
+            "output": "twitter_search"
+        },
+        {
+            "input": "__query__",
+            "transformer": "InstagramSearch",
+            "args": {
+                "creds": "__args__.instagram_api_creds",
+                "limit": 5
+            },
+            "connector": {
+                "name": "get_dict_value",
+                "args": {
+                    "key": "images"
+                },
+                "type": "post"
+            },
+            "output": "insta_search"
+        },
+        {
+            "inputs": ["twitter_search", "insta_search"],
+            "connector": "flatten",
+            "transformer": "GoogleVision",
+            "args": {
+                "creds": "__args__.default_service_account",
+                "detection_type": "OBJECT_LOCALIZATION",
+                "limit": 3
+            },
+            "output": "__response__"
+        }
+    ]
+}
