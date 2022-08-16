@@ -2,8 +2,8 @@
 ## Endpoint
 https://weenize.nw.r.appspot.com/
 ## Headers
-client-id: <YOUR CLIENT ID>
-client-secret: <YOU CLIENT SECRET>
+client-id: \<YOUR CLIENT ID>  
+client-secret: \<YOU CLIENT SECRET>
 ## Endpoints
 ### GET api/healthcheck
 Returns 200 if the API is available.
