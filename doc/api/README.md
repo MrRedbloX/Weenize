@@ -65,6 +65,11 @@ Gets all the runs of very tasks of a client.
 - Path params: 
     - success: "true" to only get runs which have succeedeed.
 - Response 200: list\<Runs>.
+### PUT api/admin/client
+Gets all the runs of very tasks of a client.
+- Path params: 
+    - use_default_service_account: "true" to attach default service account credentials.
+- Response 201: Client.
 ## Models
 ### Task
 ```
@@ -94,5 +99,15 @@ Gets all the runs of very tasks of a client.
     "success": <bool>
     "task_id": "<task_id>"
     "timestamp": <float>
+}
+```
+### Client
+```
+{
+    "active": true,
+    "client_id": "<client-id>",
+    "client_secret": "<client_secret>",
+    "api_calls": 0,
+    "time_usage": 0
 }
 ```
