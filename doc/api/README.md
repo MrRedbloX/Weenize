@@ -66,7 +66,21 @@ Gets all the runs of very tasks of a client.
     - success: "true" to only get runs which have succeedeed.
 - Response 200: list\<Runs>.
 ### PUT api/admin/client
-Gets all the runs of very tasks of a client.
+(Admin only) Creates a client.
+- Body: encrypted following data:
+```
+{
+    "name": "",
+    "email": "",
+    "phone": "",
+    "card": {
+        "number": "",
+        "exp_month": 0,
+        "exp_year": 0,
+        "cvc": ""
+    }
+}
+```
 - Path params: 
     - use_default_service_account: "true" to attach default service account credentials.
 - Response 201: Client.
@@ -107,7 +121,7 @@ Gets all the runs of very tasks of a client.
     "active": true,
     "client_id": "<client-id>",
     "client_secret": "<client_secret>",
-    "api_calls": 0,
-    "time_usage": 0
+    "consumption": 0,
+    "customer_id": "<stripe_customer_id>"
 }
 ```
