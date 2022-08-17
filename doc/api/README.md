@@ -15,7 +15,7 @@ Runs directly the weez payload.
 Creates a task.
 - Body: the same as weez body.
 - Path params:
-    - time_interval: time in minutes to wait between each task execution.
+    - cron: cron string for execution cycle.
 - Response 201: Task.
 ### GET api/task
 Gets a task.
@@ -30,7 +30,7 @@ Allows to change the state of a task.
 - Path params:
     - id: the task id.
     - active: "true" to set the task active.
-- Response 200: timestamp.
+- Response 200: task id.
 ### POST api/task/run
 Runs a task.
 - Path params:
@@ -97,7 +97,8 @@ Gets all the runs of very tasks of a client.
         <weez template>
     },
     "time_interval": 0,
-    "last_run": 0.0
+    "last_run": 0.0,
+    "running": false
 }
 ```
 ### TsData
