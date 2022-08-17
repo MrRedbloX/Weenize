@@ -77,7 +77,7 @@ See more examples in folder 'examples'.
 ## Global variables
 - \_\_query__: references the value of the query field.
 - \_\_args__: references the single layer dictionary of the field *args*. It can be credentials for other APIs. You can access the values with \_\_args__.\<MY ARG>.
-- \_\_response__: indicates the API which transformation contains the result returned. Mandatory.
+- \_\_response__: indicates the API which transformation contains the result returned.
 ## Transformers
 A transformer performs "heavy" operation on the given input(s) and returns the result.
 ### GoogleVision
@@ -172,10 +172,20 @@ A transformer performs "heavy" operation on the given input(s) and returns the r
 - Output: 
 ```
 {
-    "magnitute": 0.0, // Always positive
+    "magnitude": 0.0, // Always positive
     "score": 0.0 // Between -1 and 1.
 }
 ```
+### Webhook
+- Description: calls any other endpoint with the data as body.
+- Inputs:
+    - data: any data.
+- Mandatory args:
+    - http_method: can be any HTTP method (eg. GET, PUT, POST, ...).
+    - url: the url endpoint.
+- Optional args:
+    - headers: arguments to pass in the request headers.
+    - params: arguments to pass in the request query path.
 ## Connectors
 A connector performs "light" operation on the given input(s) and returns the result. Connectors can be used to map the ouput of one transformer to the input of another transformer. They be run on the input with type 'pre' or on the output with type 'post'.
 ### dict_values
