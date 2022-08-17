@@ -96,9 +96,10 @@ Gets all the runs of very tasks of a client.
     "task": {
         <weez template>
     },
-    "time_interval": 0,
+    "cron": "",
     "last_run": 0.0,
-    "running": false
+    "running": false,
+    "job_name": ""
 }
 ```
 ### TsData
