@@ -10,8 +10,8 @@ A weez is a JSON object composed by:
     "query": "<YOUR QUERY>",
     "payload": [
         {
-            "input": "<KEY INPUT>", // Mandatory if not "inputs"
-            "inputs": ["<KEY INPUT 1>", "<KEY INPUT 2>"], // Mandatory if not "input"
+            "input": "<KEY INPUT>", 
+            "inputs": ["<KEY INPUT 1>", "<KEY INPUT 2>"],
             "transformer": "<YOUR TRANSFORMER>", // Mandatory
             "args": { // Optionnal
                 "<MY ARG KEY>": "<MY ARG VALUE>"
@@ -33,7 +33,7 @@ A weez is a JSON object composed by:
                     }
                 }
             ],
-            "output": "<KEY OUTPUT>" // Mandatory
+            "output": "<KEY OUTPUT>"
         }
     ],
     "args": { // Optional
@@ -165,10 +165,11 @@ A transformer performs "heavy" operation on the given input(s) and returns the r
     - text: a string which can be plain text or HTML.
 - Mandatory args:
     - creds: credentials for GCP service account.
+    - action: the function to execute (example: analyze_sentiment).
     - text_type: value of language_v1.Document.Type (PLAIN_TEXT or HTML).
-    - encoding_type: value of language_v1.EncodingType (ex: UTF8).
 - Optional args:
-    - language: the language in the text (ex: en, fr).
+    - encoding_type: value of language_v1.EncodingType (example: UTF8).
+    - language: the language in the text (example: en, fr).
 - Output: 
 ```
 {
@@ -181,11 +182,13 @@ A transformer performs "heavy" operation on the given input(s) and returns the r
 - Inputs:
     - data: any data.
 - Mandatory args:
-    - http_method: can be any HTTP method (eg. GET, PUT, POST, ...).
-    - url: the url endpoint.
-- Optional args:
-    - headers: arguments to pass in the request headers.
-    - params: arguments to pass in the request query path.
+    - reqs:
+        - Mandatory:
+            - http_method: can be any HTTP method (eg. GET, PUT, POST, ...).
+            - url: the url endpoint.
+        - Optional:
+            - headers: arguments to pass in the request headers.
+            - params: arguments to pass in the request query path.
 ## Connectors
 A connector performs "light" operation on the given input(s) and returns the result. Connectors can be used to map the ouput of one transformer to the input of another transformer. They be run on the input with type 'pre' or on the output with type 'post'.
 ### dict_values
@@ -199,8 +202,8 @@ A connector performs "light" operation on the given input(s) and returns the res
 ### get_dict_value
 - Description: returns the value of a dictionary corresponding to the given value.
 - Inputs: a dictionary.
-- Mandatory args:
-    - key: a key in the dictionary.
+- Optional args:
+    - keys: can be a key or a list of keys in the dictionary. If null the first key will be used.
 - Output: the value of dct\[key]
 ### concat_list
 - Description: returns a string of a list joined by a separator.

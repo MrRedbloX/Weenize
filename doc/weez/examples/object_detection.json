@@ -14,7 +14,7 @@
             "connector": {
                 "name": "get_dict_value",
                 "args": {
-                    "key": "images"
+                    "keys": "images"
                 }
             },
             "transformer": "GoogleVision",

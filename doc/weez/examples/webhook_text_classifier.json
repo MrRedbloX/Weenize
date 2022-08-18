@@ -1,0 +1,39 @@
+{
+    "__query__": "",
+    "payload": [
+        {
+            "input": "__query__",
+            "transformer": "Webhook",
+            "args": {
+                "reqs": [
+                    {
+                        "http_method": "GET",
+                        "url": "https://news.yahoo.com/"
+                    }
+                ]
+            },
+            "output": "search"
+        },
+        {
+            "input": "search",
+            "transformer": "TextFromHtml",
+            "output": "text"
+        },
+        {
+            "input": "text",
+            "connector": {
+                "name": "get_dict_value",
+                "args": {
+                    "key": "https://news.yahoo.com/"
+                }
+            },
+            "transformer": "GoogleCNL",
+            "args": {
+                "creds": "__args__.default_service_account",
+                "action": "classify_text",
+                "text_type": "PLAIN_TEXT"
+            },
+            "output": "__response__"
+        }
+    ]
+}
