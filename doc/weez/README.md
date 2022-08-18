@@ -211,3 +211,7 @@ A connector performs "light" operation on the given input(s) and returns the res
 - Optional args:
     - sep: the join separator.
 - Output: a string.
+### concat_dict
+- Description: returns a merge of all dicts.
+- Inputs: a list of dicts.
+- Output: a dict.
