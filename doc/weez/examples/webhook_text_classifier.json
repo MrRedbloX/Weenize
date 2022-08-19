@@ -21,12 +21,7 @@
         },
         {
             "input": "text",
-            "connector": {
-                "name": "get_dict_value",
-                "args": {
-                    "key": "https://news.yahoo.com/"
-                }
-            },
+            "connector": "get_dict_value",
             "transformer": "GoogleCNL",
             "args": {
                 "creds": "__args__.gcp_service_account",
