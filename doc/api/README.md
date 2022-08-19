@@ -2,15 +2,19 @@
 ## Endpoint
 https://weenize.nw.r.appspot.com/
 ## Headers
+### Client
 client-id: \<YOUR CLIENT ID>  
 client-secret: \<YOU CLIENT SECRET>
-## Endpoints
+### Admin
+x-api-key: \<YOUR API KEY>
+## Common
 ### GET api/healthcheck
 Returns 200 if the API is available.
 ### POST api/run
 Runs directly the weez payload.
 - Body: the same as weez body.
 - Response 200: the same as weez response.
+## Task
 ### PUT api/task
 Creates a task.
 - Body: the same as weez body.
@@ -36,39 +40,48 @@ Runs a task.
 - Path params:
     - id: the task id.
 - Response 200: the task id.
+## Data
 ### GET api/data/all
 Gets all the data from a task.
 - Path params: 
     - task_id: the id of the task.
-- Response 200: TsData
+- Response 200: list\<Data>
 ### GET api/data/last
 Gets the last data of a task.
 - Path params: 
     - task_id: the id of the task.
-- Response 200: the weez data.
+- Response 200: Data.
 ### GET api/data/timestamp
 Gets the data corresponding to a given timestamp.
 - Path params: 
     - task_id: the id of the task.
     - ts: the timestamp.
-- Response 200: the weez data.
+- Response 200: Data.
 ### GET api/data/timestamp/bounds
-Get data within timestamp bounds.
+Gets data within timestamp bounds.
 - Path params: 
     - task_id: the id of the task.
     - start_ts: the start timestamp.
     - end_ts: the end timestamp.
-- Response 200: the weez data.
-### GET api/runs/all
-Gets all the runs of very tasks of a client.
-- Response 200: list\<Runs>.
-### GET api/runs/state
-Gets all the runs of very tasks of a client.
+- Response 200: list\<Data>.
+## Client
+### GET api/client
+Gets client information.
+- Response 200: Client.
+### PUT api/client/plans
+Attaches plans to client.  
+The plans are the following: google_cloud_platform, twitter.
 - Path params: 
-    - success: "true" to only get runs which have succeedeed.
-- Response 200: list\<Runs>.
+    - plans: comma separated string of plans.
+- Response 200: client id.
+### DELETE api/client/plans
+Deletes plans attached to client.
+- Path params: 
+    - plans: comma separated string of plans.
+- Response 200: client id.
+## Admin
 ### PUT api/admin/client
-(Admin only) Creates a client.
+Creates a client.
 - Body: encrypted following data:
 ```
 {
@@ -102,23 +115,19 @@ Gets all the runs of very tasks of a client.
     "job_name": ""
 }
 ```
-### TsData
+### Data
 ```
 {
-    "<timestamp>": {
+    "metadata": {
+        "timestamp": 0.0,
+        "client_id": "",
+        "success": true,
+        "message": "",
+        "task_id": ""
+    },
+    "data": {
         <weez data>
     }
-}
-```
-### Runs
-```
-{
-    "client_id": "<client-id>",
-    "expires_at": "<datetime>"
-    "message": "<message>"
-    "success": <bool>
-    "task_id": "<task_id>"
-    "timestamp": <float>
 }
 ```
 ### Client
@@ -128,6 +137,10 @@ Gets all the runs of very tasks of a client.
     "client_id": "<client-id>",
     "client_secret": "<client_secret>",
     "consumption": 0,
-    "customer_id": "<stripe_customer_id>"
+    "customer_id": "<stripe_customer_id>",
+    "plans": [""],
+    "args": {
+        <any args>
+    }
 }
 ```

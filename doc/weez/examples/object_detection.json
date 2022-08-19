@@ -5,7 +5,7 @@
             "input": "__query__",
             "transformer": "TwitterSearch",
             "args": {
-                "creds": "__args__.twitter_api_creds"
+                "creds": "__args__.twitter_api_credentials"
             },
             "output": "twitter_search"
         },
@@ -19,7 +19,7 @@
             },
             "transformer": "GoogleVision",
             "args": {
-                "creds": "__args__.default_service_account",
+                "creds": "__args__.gcp_service_account",
                 "detection_type": "OBJECT_LOCALIZATION",
                 "limit": 3
             },

@@ -5,7 +5,7 @@
             "input": "__query__",
             "transformer": "TwitterSearch",
             "args": {
-                "creds": "__args__.twitter_api_creds"
+                "creds": "__args__.twitter_api_credentials"
             },
             "connector": {
                 "name": "get_dict_value",
@@ -20,7 +20,7 @@
             "input": "__query__",
             "transformer": "InstagramSearch",
             "args": {
-                "creds": "__args__.instagram_api_creds",
+                "creds": "__args__.instagram_api_credentials",
                 "limit": 5
             },
             "connector": {
@@ -37,7 +37,7 @@
             "connector": "flatten",
             "transformer": "GoogleVision",
             "args": {
-                "creds": "__args__.default_service_account",
+                "creds": "__args__.gcp_service_account",
                 "detection_type": "OBJECT_LOCALIZATION",
                 "limit": 3
             },

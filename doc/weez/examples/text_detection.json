@@ -19,7 +19,7 @@
             "input": "images",
             "connectors": ["dict_values", "flatten"],
             "args": {
-                "creds": "__args__.default_service_account",
+                "creds": "__args__.gcp_service_account",
                 "detection_type": "TEXT_DETECTION",
                 "limit": 3
             },

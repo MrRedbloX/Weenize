@@ -27,7 +27,7 @@
             ],
             "transformer": "GoogleCNL",
             "args": {
-                "creds": "__args__.default_service_account",
+                "creds": "__args__.gcp_service_account",
                 "action": "analyze_sentiment",
                 "text_type": "PLAIN_TEXT",
                 "encoding_type": "UTF8",
