@@ -87,8 +87,6 @@ A transformer performs "heavy" operation on the given input(s) and returns the r
 - Mandatory args:
     - creds: credentials for the service account.
     - detection_type: see all detection types at https://cloud.google.com/vision/docs/reference/rest/v1/Feature
-- Optional args:
-    - limit: integer to limit the number of images.
 - Output: 
 ```
 {
@@ -182,13 +180,196 @@ A transformer performs "heavy" operation on the given input(s) and returns the r
 - Inputs:
     - data: any data.
 - Mandatory args:
-    - reqs:
-        - Mandatory:
-            - http_method: can be any HTTP method (eg. GET, PUT, POST, ...).
-            - url: the url endpoint.
-        - Optional:
-            - headers: arguments to pass in the request headers.
-            - params: arguments to pass in the request query path.
+    - http_method: can be any HTTP method (eg. GET, PUT, POST, ...).
+    - url: the url endpoint.
+- Optional args:
+    - headers: arguments to pass in the request headers.
+    - params: arguments to pass in the request query path.
+- Output:
+```
+{
+    "<url>": "<reponse_body>"
+}
+```
+
+### TikTok
+- Description: fetches TikTok posts.
+- Inputs:
+    - query: string used in TikTok search.
+- Mandatory args:
+    - mode: search mode: can be trending or user_feed.
+- Optional args:
+    - limit: integer to limit the results number.
+    - lang: language use for the search.
+- Output:
+```
+[
+    {
+        "id": "",
+        "desc": "",
+        "createTime": 0,
+        "video": {
+            "id": "",
+            "height": 0,
+            "width": 0,
+            "duration": 0,
+            "ratio": "",
+            "cover": "",
+            "originCover": "",
+            "dynamicCover": "",
+            "playAddr": "",
+            "downloadAddr": "",
+            "shareCover": [
+                ""
+            ],
+            "reflowCover": "",
+            "bitrate": 0,
+            "encodedType": "",
+            "format": "",
+            "videoQuality": "",
+            "encodeUserTag": "",
+            "codecType": "",
+            "definition": "",
+            "bitrateInfo": [
+                {
+                    "GearName": "",
+                    "Bitrate": 0,
+                    "QualityType": 0,
+                    "PlayAddr": {
+                        "Uri": "",
+                        "UrlList": [
+                            "",
+                            ""
+                        ],
+                        "DataSize": 10507869,
+                        "UrlKey": "",
+                        "FileHash": "",
+                        "FileCs": ""
+                    },
+                    "CodecType": ""
+                }
+            ],
+            "zoomCover": {
+                "240": "",
+                "480": "",
+                "720": "",
+                "960": ""
+            }
+        },
+        "author": {
+            "id": "",
+            "uniqueId": "",
+            "nickname": "",
+            "avatarThumb": "",
+            "avatarMedium": "",
+            "avatarLarger": "",
+            "signature": "",
+            "verified": false,
+            "secUid": "",
+            "secret": false,
+            "ftc": false,
+            "relation": 0,
+            "openFavorite": false,
+            "commentSetting": 0,
+            "duetSetting": 0,
+            "stitchSetting": 0,
+            "privateAccount": false,
+            "isADVirtual": false,
+            "roomId": "",
+            "ttSeller": false,
+            "downloadSetting": 0
+        },
+        "music": {
+            "id": "",
+            "title": "original sound",
+            "playUrl": "",
+            "coverThumb": "",
+            "coverMedium": "",
+            "coverLarge": "",
+            "authorName": "",
+            "original": false,
+            "duration": 0,
+            "album": ""
+        },
+        "challenges": [
+            {
+                "id": "",
+                "title": "",
+                "desc": "",
+                "profileThumb": "",
+                "profileMedium": "",
+                "profileLarger": "",
+                "coverThumb": "",
+                "coverMedium": "",
+                "coverLarger": "",
+                "isCommerce": false,
+                "stats": {
+                    "videoCount": 0,
+                    "viewCount": 0
+                }
+            }
+        ],
+        "stats": {
+            "diggCount": 0,
+            "shareCount": 0,
+            "commentCount": 0,
+            "playCount": 0
+        },
+        "duetInfo": {
+            "duetFromId": ""
+        },
+        "originalItem": false,
+        "officalItem": false,
+        "textExtra": [
+            {
+                "awemeId": "",
+                "start": 0,
+                "end": 0,
+                "hashtagName": "",
+                "hashtagId": "",
+                "type": 0,
+                "userId": "",
+                "isCommerce": false,
+                "userUniqueId": "",
+                "secUid": "",
+                "subType": 0
+            }
+        ],
+        "secret": false,
+        "forFriend": false,
+        "digged": false,
+        "itemCommentStatus": 0,
+        "showNotPass": false,
+        "vl1": false,
+        "itemMute": false,
+        "authorStats": {
+            "followingCount": 0,
+            "followerCount": 0,
+            "heartCount": 0,
+            "videoCount": 0,
+            "diggCount": 0,
+            "heart": 0
+        },
+        "privateItem": false,
+        "duetEnabled": false,
+        "stitchEnabled": false,
+        "shareEnabled": false,
+        "stickersOnItem": [
+            {
+                "stickerType": 0,
+                "stickerText": [
+                    ""
+                ]
+            }
+        ],
+        "isAd": false,
+        "duetDisplay": 0,
+        "stitchDisplay": 0,
+        "adAuthorization": false,
+        "adLabelVersion": 0
+    }
+]
+```
 ## Connectors
 A connector performs "light" operation on the given input(s) and returns the result. Connectors can be used to map the ouput of one transformer to the input of another transformer. They be run on the input with type 'pre' or on the output with type 'post'.
 ### dict_values

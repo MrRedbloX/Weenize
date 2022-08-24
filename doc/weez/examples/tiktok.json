@@ -1,0 +1,12 @@
+{
+    "payload": [
+        {
+            "transformer": "TikTok",
+            "args": {
+                "mode": "trending",
+                "limit": 10
+            },
+            "output": "__response__"
+        }
+    ]
+}

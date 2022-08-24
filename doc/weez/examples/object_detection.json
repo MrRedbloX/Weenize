@@ -20,8 +20,7 @@
             "transformer": "GoogleVision",
             "args": {
                 "creds": "__args__.gcp_service_account",
-                "detection_type": "OBJECT_LOCALIZATION",
-                "limit": 3
+                "detection_type": "OBJECT_LOCALIZATION"
             },
             "output": "__response__"
         }

@@ -20,7 +20,7 @@
             "input": "__query__",
             "transformer": "InstagramSearch",
             "args": {
-                "creds": "__args__.instagram_api_credentials",
+                "creds": "__args__.instagram_account",
                 "limit": 5
             },
             "connector": {
@@ -38,8 +38,7 @@
             "transformer": "GoogleVision",
             "args": {
                 "creds": "__args__.gcp_service_account",
-                "detection_type": "OBJECT_LOCALIZATION",
-                "limit": 3
+                "detection_type": "OBJECT_LOCALIZATION"
             },
             "output": "__response__"
         }

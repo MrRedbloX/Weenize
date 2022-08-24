@@ -5,12 +5,8 @@
             "input": "__query__",
             "transformer": "Webhook",
             "args": {
-                "reqs": [
-                    {
-                        "http_method": "GET",
-                        "url": "https://news.yahoo.com/"
-                    }
-                ]
+                "http_method": "GET",
+                "url": "https://news.yahoo.com/"
             },
             "output": "search"
         },
