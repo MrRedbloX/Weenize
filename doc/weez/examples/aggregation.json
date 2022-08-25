@@ -1,0 +1,82 @@
+{
+    "query": [
+        {
+            "zone": "Paris",
+            "temperature": 26
+        },
+        {
+            "zone": "London",
+            "temperature": 24
+        },
+        {
+            "zone": "Paris",
+            "temperature": 29
+        },
+        {
+            "zone": "London",
+            "temperature": 27
+        }
+    ],
+    "payload": [
+        {
+            "input": "__query__",
+            "transformer": "Aggregator",
+            "args": {
+                "group_by_columns": ["zone"],
+                "aggregation_columns": ["temperature"],
+                "aggregation_type": "min"
+            },
+            "output": "min"
+        },
+        {
+            "input": "__query__",
+            "transformer": "Aggregator",
+            "args": {
+                "group_by_columns": ["zone"],
+                "aggregation_columns": ["temperature"],
+                "aggregation_type": "max"
+            },
+            "output": "max"
+        },
+        {
+            "input": "__query__",
+            "transformer": "Aggregator",
+            "args": {
+                "group_by_columns": ["zone"],
+                "aggregation_columns": ["temperature"],
+                "aggregation_type": "mean"
+            },
+            "output": "mean"
+        },
+        {
+            "input": "__query__",
+            "transformer": "Aggregator",
+            "args": {
+                "group_by_columns": ["zone"],
+                "aggregation_columns": ["temperature"],
+                "aggregation_type": "sum"
+            },
+            "output": "sum"
+        },
+        {
+            "input": "__query__",
+            "transformer": "Aggregator",
+            "args": {
+                "group_by_columns": ["zone"],
+                "aggregation_columns": ["temperature"],
+                "aggregation_type": "count"
+            },
+            "output": "count"
+        },
+        {
+            "inputs": ["min", "max", "mean", "sum", "count"],
+            "connector": {
+                "name": "merge_objects",
+                "args": {
+                    "keys": ["min", "max", "mean", "sum", "count"]
+                }
+            },
+            "output": "__response__"
+        }
+    ]
+}

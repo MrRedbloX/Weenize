@@ -370,6 +370,16 @@ A transformer performs "heavy" operation on the given input(s) and returns the r
     }
 ]
 ```
+### Aggregator
+- Description: does an aggregation on given json data.
+- Inputs:
+    - data: json/dict data.
+- Mandatory args:
+    - aggregation_type: the aggregation type to perform (min, max, mean, sum, count, ...), for more details see https://pandas.pydata.org/docs/reference/index.html
+- Optionna args:
+    - group_by_columns: a list of columns to use for the grouping. If null all the columns will be accounted.
+    - aggregation_columns: a list of columns to perform the aggregation. If null all the columns will be accounted.
+- Output: the aggregated data, likely a list or a dict.
 ## Connectors
 A connector performs "light" operation on the given input(s) and returns the result. Connectors can be used to map the ouput of one transformer to the input of another transformer. They be run on the input with type 'pre' or on the output with type 'post'.
 ### dict_values
@@ -395,4 +405,10 @@ A connector performs "light" operation on the given input(s) and returns the res
 ### concat_dict
 - Description: returns a merge of all dicts.
 - Inputs: a list of dicts.
+- Output: a dict.
+### merge_objects
+- Description: merge multiple objects into a dict.
+- Inputs: a list of objects.
+- Optional args:
+    - keys: a list of keys for the input objects, if not provided the default key is the index of the object in the list.
 - Output: a dict.
