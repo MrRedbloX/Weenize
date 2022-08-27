@@ -45,24 +45,28 @@ Runs a task.
 Gets all the data from a task.
 - Path params: 
     - task_id: the id of the task.
+    - type: the type of the data (can be data or aggregation).
 - Response 200: list\<Data>
 ### GET api/data/last
 Gets the last data of a task.
 - Path params: 
     - task_id: the id of the task.
+    - type: the type of the data (can be data or aggregation).
 - Response 200: Data.
 ### GET api/data/timestamp
 Gets the data corresponding to a given timestamp.
 - Path params: 
     - task_id: the id of the task.
     - ts: the timestamp.
+    - type: the type of the data (can be data or aggregation).
 - Response 200: Data.
 ### GET api/data/timestamp/bounds
 Gets data within timestamp bounds.
 - Path params: 
     - task_id: the id of the task.
-    - start_ts: the start timestamp.
-    - end_ts: the end timestamp.
+    - start_ts: the start timestamp (optional).
+    - end_ts: the end timestamp (optional).
+    - type: the type of the data (can be data or aggregation).
 - Response 200: list\<Data>.
 ## Client
 ### GET api/client
