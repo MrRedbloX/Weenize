@@ -29,8 +29,8 @@ Gets a task.
 ### GET api/task/all
 Gets all tasks.
 - Response 200: list\<Task>
-### POST api/task/state
-Allows to change the state of a task.
+### PATCH api/task
+Allows to update a task.
 - Path params:
     - id: the task id.
     - active: "true" to set the task active.
