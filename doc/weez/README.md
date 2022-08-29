@@ -86,7 +86,7 @@ A transformer performs "heavy" operation on the given input(s) and returns the r
     - images: a list of urls corresponding to images.
 - Mandatory args:
     - creds: credentials for the service account.
-    - detection_type: see all detection types at https://cloud.google.com/vision/docs/reference/rest/v1/Feature
+    - detection_types: a list of detection types: see all detection types at https://cloud.google.com/vision/docs/reference/rest/v1/Feature
 - Output: 
 ```
 {

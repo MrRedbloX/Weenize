@@ -20,7 +20,7 @@
             "connectors": ["dict_values", "flatten"],
             "args": {
                 "creds": "__args__.gcp_service_account",
-                "detection_type": "TEXT_DETECTION"
+                "detection_types": ["TEXT_DETECTION"]
             },
             "output": "__response__"
         }
