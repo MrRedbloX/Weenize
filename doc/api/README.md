@@ -2,14 +2,28 @@
 ## Endpoint
 https://weenize.nw.r.appspot.com/
 ## Headers
-### Client
-client-id: \<YOUR CLIENT ID>  
-client-secret: \<YOU CLIENT SECRET>
-### Admin
-x-api-key: \<YOUR API KEY>
+### Bearer
+Required for almost all endpoints
+Authorization: Bearer \<JWT TOKEN>
+### Basic
+Required only for login endpoint.
+Authorization: Basic \<BASE64 TOKEN>
 ## Common
 ### GET api/healthcheck
 Returns 200 if the API is available.
+### GET api/token
+Returns a token from client id and secret.
+- Headers: client-id and client-secret.
+- Response 200: Token.
+### GET api/token/refresh
+Returns a token from a refresh token.
+- Body:
+```
+{
+    refresh_token: ""
+}
+```
+- Response 200: Token.
 ### POST api/run
 Runs directly the weez payload.
 - Body: the same as weez body.
@@ -69,6 +83,27 @@ Gets data within timestamp bounds.
     - type: the type of the data (can be data or aggregation).
 - Response 200: list\<Data>.
 ## Client
+### PUT api/client
+Creates a client.
+- Body:
+```
+{
+    "name": "",
+    "email": "",
+    "password": "",
+    "phone": "",
+    "card": {
+        "number": "",
+        "exp_month": 0,
+        "exp_year": 0,
+        "cvc": ""
+    }
+}
+```
+- Response 201: Client.
+### GET api/client/login
+Gets the client id and secret from basic authentification.
+- Response 200: Token
 ### GET api/client
 Gets client information.
 - Response 200: Client.
@@ -83,26 +118,6 @@ Deletes plans attached to client.
 - Path params: 
     - plans: comma separated string of plans.
 - Response 200: client id.
-## Admin
-### PUT api/admin/client
-Creates a client.
-- Body: encrypted following data:
-```
-{
-    "name": "",
-    "email": "",
-    "phone": "",
-    "card": {
-        "number": "",
-        "exp_month": 0,
-        "exp_year": 0,
-        "cvc": ""
-    }
-}
-```
-- Path params: 
-    - use_default_service_account: "true" to attach default service account credentials.
-- Response 201: Client.
 ## Models
 ### Task
 ```
@@ -146,5 +161,13 @@ Creates a client.
     "args": {
         <any args>
     }
+}
+```
+### Token
+````
+{
+    "access_token": "",
+    "refresh_token": "",
+    "expires": "" // Date UTC ISO format
 }
 ```
